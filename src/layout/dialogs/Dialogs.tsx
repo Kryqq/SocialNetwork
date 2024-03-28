@@ -1,44 +1,25 @@
 import React from 'react';
 import styles from './Dialogs.module.scss';
-
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
+import { MessagesDataType } from '../..';
+import { DialogsDataType } from '../..';
 
-export type DialogsDataType = {
-   id: number;
-   name: string;
+export type DialogsDataTypeProps = {
+   dialogsData: DialogsDataType[];
+   messagesData: MessagesDataType[];
 };
 
-export const dialogsData: DialogsDataType[] = [
-   { id: 1, name: 'Вася' },
-   { id: 2, name: 'Петя' },
-   { id: 3, name: 'Женя' },
-   { id: 4, name: 'Лена' },
-   { id: 5, name: 'Игорь' },
-];
-
-export type MessagesDataType = {
-   id: number;
-   message: string;
-};
-
-export const messagesData: MessagesDataType[] = [
-   { id: 1, message: 'Hi' },
-   { id: 2, message: 'Hello' },
-   { id: 3, message: 'How are you?' },
-   { id: 4, message: 'I am fine' },
-];
-
-export const Dialogs = () => {
+export const Dialogs = (props: DialogsDataTypeProps) => {
    return (
       <div className={styles.dialogsMenu}>
          <div className={styles.dialog}>
-            {dialogsData.map((dialog) => (
+            {props.dialogsData.map((dialog) => (
                <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
             ))}
          </div>
          <div className={styles.messages}>
-            {messagesData.map((message) => (
+            {props.messagesData.map((message) => (
                <MessageItem key={message.id} messageContent={message.message} />
             ))}
          </div>
