@@ -1,0 +1,80 @@
+export type PostsPropsType = {
+   postsData: PostsDataType[];
+   avatar: string;
+};
+
+export type PostsDataType = {
+   id: number;
+   postTitle: string;
+   avatar: string;
+   likes: number;
+};
+export type MessagesDataType = {
+   id: number;
+   message: string;
+};
+export type DialogsDataType = {
+   id: number;
+   name: string;
+};
+
+export type DialogsPageType = {
+   messagesData: MessagesDataType[];
+   dialogsData: DialogsDataType[];
+};
+
+export type StateTypes = {
+   profilePage: PostsDataType[];
+   dialogsPage: DialogsPageType;
+};
+
+export const state = {
+   profilePage: {
+      postsData: [
+         {
+            id: 1,
+            postTitle: 'Hello, how are you?',
+            avatar:
+               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
+            likes: 16,
+         },
+         {
+            id: 2,
+            postTitle: 'now im using whats app ;)0?',
+            avatar:
+               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
+            likes: 11,
+         },
+         {
+            id: 3,
+            postTitle: 'yoyoy?',
+            avatar:
+               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
+            likes: 14,
+         },
+
+         {
+            id: 4,
+            postTitle: 'good weather today!',
+            avatar:
+               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
+            likes: 5,
+         },
+      ],
+   },
+   dialogsPage: {
+      messagesData: [
+         { id: 1, message: 'Hi' },
+         { id: 2, message: 'Hello' },
+         { id: 3, message: 'How are you?' },
+         { id: 4, message: 'I am fine' },
+      ],
+      dialogsData: [
+         { id: 1, name: 'Вася' },
+         { id: 2, name: 'Петя' },
+         { id: 3, name: 'Женя' },
+         { id: 4, name: 'Лена' },
+         { id: 5, name: 'Игорь' },
+      ],
+   },
+};
