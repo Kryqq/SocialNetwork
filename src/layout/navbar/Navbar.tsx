@@ -1,35 +1,45 @@
 import React from 'react';
 import styles from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
+
+export type NavbarItemType = {
+   navItemTitle: string;
+   navItemPath: string;
+};
+const navbarItems: NavbarItemType[] = [
+   {
+      navItemTitle: 'Профиль',
+      navItemPath: '/profile',
+   },
+   {
+      navItemTitle: 'Сообщения',
+      navItemPath: '/dialogs',
+   },
+   {
+      navItemTitle: 'Новости',
+      navItemPath: '/news',
+   },
+   {
+      navItemTitle: 'Музыка',
+      navItemPath: '/music',
+   },
+   {
+      navItemTitle: 'Настройки',
+      navItemPath: '/settings',
+   },
+];
+
 export const Navbar = () => {
    return (
       <div className={styles.navbar}>
          <ul>
-            <li>
-               <NavLink activeClassName={styles.active} to="/profile">
-                  Профиль
-               </NavLink>
-            </li>
-            <li>
-               <NavLink activeClassName={styles.active} to="/dialogs">
-                  Сообщения
-               </NavLink>
-            </li>
-            <li>
-               <NavLink activeClassName={styles.active} to="/news">
-                  Новости
-               </NavLink>
-            </li>
-            <li>
-               <NavLink activeClassName={styles.active} to="/music">
-                  Музыка
-               </NavLink>
-            </li>
-            <li>
-               <NavLink activeClassName={styles.active} to="/settings">
-                  Настройки
-               </NavLink>
-            </li>
+            {navbarItems.map((item) => (
+               <li>
+                  <NavLink key={item.navItemTitle} activeClassName={styles.active} to={item.navItemPath}>
+                     {item.navItemTitle}
+                  </NavLink>
+               </li>
+            ))}
          </ul>
       </div>
    );

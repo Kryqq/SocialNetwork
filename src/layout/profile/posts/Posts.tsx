@@ -50,11 +50,9 @@ export const Posts = (props: PostsPropsType) => {
             <textarea></textarea>
             <button></button>
          </div>
-         <Post postTitle="Hello, how are you?" avatar={props.avatar} likes={16} />
-         <Post postTitle="now im using whats app ;)0?" avatar={props.avatar} likes={11} />
-         <Post postTitle="yoyoy?" avatar={props.avatar} likes={14} />
-         <Post postTitle="good weather today!" avatar={props.avatar} likes={5} />
-         <Post postTitle="anybody here??/" avatar={props.avatar} likes={8} />
+         {postsData.map((post) => (
+            <Post key={post.id} postTitle={post.postTitle} avatar={props.avatar} likes={post.likes} />
+         ))}
       </div>
    );
 };

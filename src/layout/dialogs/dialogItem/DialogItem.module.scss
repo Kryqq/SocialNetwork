@@ -1,8 +1,13 @@
 .dialog {
-	width: 20%;
-	max-width: 100%;
-  }
-  
-  .dialogItem {
-  }
-  
+   width: 20%;
+   max-width: 100%;
+}
+
+.dialogItem {
+   text-decoration: none;
+   color: black;
+   padding: 10px;
+}
+.dialogItem:active {
+   color: white;
+}
