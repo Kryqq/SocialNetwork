@@ -1,34 +1,36 @@
-export type PostsPropsType = {
-   postsData: PostsDataType[];
-   avatar: string;
-};
-
 export type PostsDataType = {
    id: number;
    postTitle: string;
    avatar: string;
    likes: number;
 };
-export type MessagesDataType = {
-   id: number;
-   message: string;
+
+export type ProfilePageType = {
+   postsData: PostsDataType[];
+  
 };
+
 export type DialogsDataType = {
    id: number;
    name: string;
 };
 
-export type DialogsPageType = {
-   messagesData: MessagesDataType[];
-   dialogsData: DialogsDataType[];
+export type MessagesDataType = {
+   id: number;
+   message: string;
 };
 
-export type StateTypes = {
-   profilePage: PostsDataType[];
+export type DialogsPageType = {
+   dialogsData: DialogsDataType[];
+   messagesData: MessagesDataType[];
+};
+
+export type StateType = {
+   profilePage: ProfilePageType;
    dialogsPage: DialogsPageType;
 };
 
-export const state = {
+export const state: StateType = {
    profilePage: {
       postsData: [
          {

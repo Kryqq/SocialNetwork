@@ -1,6 +1,10 @@
 import React from 'react';
 import { Post } from './post/Post';
-import { PostsPropsType } from '../../../redux/state';
+import { PostsDataType } from '../../../redux/state';
+
+type PostsPropsType = {
+   postsData: PostsDataType[];
+};
 
 export const Posts = (props: PostsPropsType) => {
    return (
@@ -10,7 +14,7 @@ export const Posts = (props: PostsPropsType) => {
             <button></button>
          </div>
          {props.postsData.map((post) => (
-            <Post id={post.id} key={post.id} postTitle={post.postTitle} avatar={props.avatar} likes={post.likes} />
+            <Post id={post.id} postAvatar={post.avatar} postTitle={post.postTitle} likes={post.likes} key={post.id} />
          ))}
       </div>
    );
