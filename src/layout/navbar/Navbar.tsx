@@ -33,8 +33,8 @@ export const Navbar = () => {
    return (
       <div className={styles.navbar}>
          <ul>
-            {navbarItems.map((item) => (
-               <li>
+            {navbarItems.map((item, key ) => (
+               <li key={key}>
                   <NavLink key={item.navItemTitle} activeClassName={styles.active} to={item.navItemPath}>
                      {item.navItemTitle}
                   </NavLink>

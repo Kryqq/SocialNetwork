@@ -6,6 +6,7 @@ import React from 'react';
 
 type ProfilePropsType = {
    profilePage: ProfilePageType;
+   addPost: (newPostText: string) => void;
 };
 
 export const Profile = (props: ProfilePropsType) => {
@@ -13,7 +14,7 @@ export const Profile = (props: ProfilePropsType) => {
    return (
       <div className={styles.profile}>
          <ProfileInfo />
-         <Posts postsData={props.profilePage.postsData} />
+         <Posts addPost={props.addPost} postsData={props.profilePage.postsData} />
       </div>
    );
 };
