@@ -2,15 +2,11 @@ import React from 'react';
 import styles from './Dialogs.module.scss';
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
-import { MessagesDataType } from '../..';
-import { DialogsDataType } from '../..';
+import { DialogsPageType } from '../../redux/state';
 
-export type DialogsDataTypeProps = {
-   dialogsData: DialogsDataType[];
-   messagesData: MessagesDataType[];
-};
 
-export const Dialogs = (props: DialogsDataTypeProps) => {
+
+export const Dialogs = (props: DialogsPageType ) => {
    return (
       <div className={styles.dialogsMenu}>
          <div className={styles.dialog}>

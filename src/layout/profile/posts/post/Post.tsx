@@ -1,12 +1,8 @@
 import React from 'react';
 import styles from './Post.module.scss';
-export type PostPropsType = {
-   avatar: string;
-   likes: number;
-   postTitle: string;
-};
+import { PostsDataType } from '../../../../redux/state';
 
-export const Post = (props: PostPropsType) => {
+export const Post = (props: PostsDataType) => {
    return (
       <div>
          <img alt="avatar" className={styles.postAvatar} src={props.avatar}></img>
