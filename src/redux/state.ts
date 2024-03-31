@@ -1,4 +1,4 @@
-import { rerenderEntireTree } from '../render'
+import { rerenderEntireTree } from '../render';
 export type PostsDataType = {
    id: number;
    postTitle: string;
@@ -8,6 +8,7 @@ export type PostsDataType = {
 
 export type ProfilePageType = {
    postsData: PostsDataType[];
+   newPostText: string;
 };
 
 export type DialogsDataType = {
@@ -63,6 +64,7 @@ export const state: StateType = {
             likes: 5,
          },
       ],
+      newPostText: '',
    },
    dialogsPage: {
       messagesData: [
@@ -81,17 +83,21 @@ export const state: StateType = {
    },
 };
 
-export const addPost = (postNewMessage: string) => {
-
+export const addPost = () => {
    const newPost = {
       id: 5,
-      postTitle: postNewMessage,
+      postTitle: state.profilePage.newPostText,
       avatar:
          'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
       likes: 0,
    };
-
+debugger
    state.profilePage.postsData.push(newPost);
    rerenderEntireTree(state);
+};
 
+export const updateNewPostText = (newText: string) => {
+   state.profilePage.newPostText = newText;
+
+   rerenderEntireTree(state);
 };
