@@ -6,15 +6,20 @@ import React from 'react';
 
 type ProfilePropsType = {
    profilePage: ProfilePageType;
-   addPost: (newPostText: string) => void;
+   addPost: () => void;
+   updateNewPostText: (newText: string) => void;
 };
 
 export const Profile = (props: ProfilePropsType) => {
-
    return (
       <div className={styles.profile}>
          <ProfileInfo />
-         <Posts addPost={props.addPost} postsData={props.profilePage.postsData} />
+         <Posts
+            newPostText={props.profilePage.newPostText}
+            postsData={props.profilePage.postsData}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText}
+         />
       </div>
    );
 };
