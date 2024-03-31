@@ -4,22 +4,31 @@ import { PostsDataType } from '../../../redux/state';
 
 type PostsPropsType = {
    postsData: PostsDataType[];
-   addPost: (newPostText: string) => void;
+   newPostText: string;
+   addPost: () => void;
+   updateNewPostText: (newText: string) => void;
 };
 
 const ref: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
 export const Posts = (props: PostsPropsType) => {
    const addPostHandler = () => {
+	 props.addPost();
+      props.updateNewPostText('');
+   };
+
+   const postChangeHandler = () => {
       if (ref.current) {
-         props.addPost(ref.current.value);
-	    ref.current.value = '';
+         const text = ref.current?.value;
+         props.updateNewPostText(text);
+         ref.current.value = '';
       }
    };
+
    return (
       <div>
          <div>
-            <textarea ref={ref}></textarea>
+            <textarea onChange={postChangeHandler} ref={ref} value={props.newPostText} />
             <button onClick={addPostHandler}></button>
          </div>
          {props.postsData.map((post) => (
