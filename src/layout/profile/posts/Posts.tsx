@@ -14,7 +14,7 @@ const ref: React.RefObject<HTMLTextAreaElement> = React.createRef();
 export const Posts = (props: PostsPropsType) => {
    const addPostHandler = () => {
 	 props.addPost();
-      props.updateNewPostText('');
+  
    };
 
    const postChangeHandler = () => {
