@@ -1,3 +1,4 @@
+import { rerenderEntireTree } from '../render'
 export type PostsDataType = {
    id: number;
    postTitle: string;
@@ -91,4 +92,6 @@ export const addPost = (postNewMessage: string) => {
    };
 
    state.profilePage.postsData.push(newPost);
+   rerenderEntireTree(state);
+
 };

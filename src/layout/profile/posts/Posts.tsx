@@ -10,10 +10,10 @@ type PostsPropsType = {
 const ref: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
 export const Posts = (props: PostsPropsType) => {
-	
-   const addPostHandler = ( ) => {
+   const addPostHandler = () => {
       if (ref.current) {
-		props.addPost(ref.current.value);
+         props.addPost(ref.current.value);
+	    ref.current.value = '';
       }
    };
    return (
