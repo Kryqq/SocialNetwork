@@ -184,3 +184,12 @@ export const store: StoreType = {
       }
    },
 };
+
+export const addPostActionCreator: addPostActionCreatorType = () => {
+	return { type: 'ADD-POST' };
+  };
+  
+ export  const updateNewPostTextActionCreator: UpdateNewPostTextActionCreatorType = (text: string) => {
+	return { type: 'UPDATE-NEW-POST-TEXT', newText: text };
+  };
+  
