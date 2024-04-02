@@ -1,3 +1,13 @@
+interface IADD_POST {
+   type: 'ADD-POST';
+}
+interface IUPDATE_NEW_POST_TEXT {
+   type: 'UPDATE-NEW-POST-TEXT';
+   newText: string;
+}
+
+export type ActionType = IADD_POST | IUPDATE_NEW_POST_TEXT;
+
 export type PostsDataType = {
    id: number;
    postTitle: string;
@@ -85,10 +95,11 @@ export const state: StateType = {
 export type StoreType = {
    _state: StateType;
    getState: () => StateType;
+
    _callSubscriber: (state: StateType) => void;
    subscribe: (observer: (state: StateType) => void) => void;
-   addPost: () => void;
-   updateNewPostText: (newText: string) => void;
+
+   dispatch: (action: ActionType) => void;
 };
 
 export const store: StoreType = {
@@ -147,27 +158,25 @@ export const store: StoreType = {
       return this._state;
    },
    _callSubscriber() {},
-   addPost() {
-
-      const newPost = {
-         id: 5,
-         postTitle: this._state.profilePage.newPostText,
-         avatar:
-            'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
-         likes: 0,
-      };
-
-      this._state.profilePage.postsData.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);// используется местный стейт
-   },
-   updateNewPostText(newText: string) {
-      this._state.profilePage.newPostText = newText;
-
-      this._callSubscriber(this._state);
-   },
-
    subscribe(observer: (state: StateType) => void) {
       this._callSubscriber = observer;
+   },
+   dispatch(action) {
+      if (action.type === 'ADD-POST') {
+         const newPost = {
+            id: 5,
+            postTitle: this._state.profilePage.newPostText,
+            avatar:
+               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
+            likes: 0,
+         };
+
+         this._state.profilePage.postsData.push(newPost);
+         this._state.profilePage.newPostText = '';
+         this._callSubscriber(this._state); // используется местный стейт
+      } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+         this._state.profilePage.newPostText = action.newText;
+         this._callSubscriber(this._state);
+      }
    },
 };
