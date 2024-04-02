@@ -1,6 +1,11 @@
 import React from 'react';
 import { Post } from './post/Post';
-import { ActionType, PostsDataType } from '../../../redux/state';
+import {
+   ActionType,
+   PostsDataType,
+   UpdateNewPostTextActionCreatorType,
+   addPostActionCreatorType,
+} from '../../../redux/state';
 
 type PostsPropsType = {
    postsData: PostsDataType[];
@@ -10,15 +15,23 @@ type PostsPropsType = {
 
 const ref: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
+const addPostActionCreator: addPostActionCreatorType = () => {
+   return { type: 'ADD-POST' };
+};
+
+const updateNewPostTextActionCreator: UpdateNewPostTextActionCreatorType = (text: string) => {
+   return { type: 'UPDATE-NEW-POST-TEXT', newText: text };
+};
+
 export const Posts = (props: PostsPropsType) => {
    const addPostHandler = () => {
-      props.dispatch({ type: 'ADD-POST' });
+      props.dispatch(addPostActionCreator());
    };
 
    const postChangeHandler = () => {
       if (ref.current) {
          const text = ref.current?.value;
-         props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });
+         props.dispatch(updateNewPostTextActionCreator(text));
          ref.current.value = '';
       }
    };
