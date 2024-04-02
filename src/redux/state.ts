@@ -1,10 +1,14 @@
-interface IADD_POST {
+export interface IADD_POST {
    type: 'ADD-POST';
 }
 interface IUPDATE_NEW_POST_TEXT {
    type: 'UPDATE-NEW-POST-TEXT';
    newText: string;
 }
+
+export type addPostActionCreatorType = () => IADD_POST;
+
+export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
 
 export type ActionType = IADD_POST | IUPDATE_NEW_POST_TEXT;
 
