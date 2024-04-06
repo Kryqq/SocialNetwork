@@ -1,14 +1,9 @@
 import styles from './Dialogs.module.scss';
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
-import {
-   ActionType,
-   DialogsPageType,
-   sendPrivateMessageActionCreator,
-   updateNewMessageTextActionCreator,
-   updateNewPostTextActionCreator,
-} from '../../redux/state';
+import { ActionType, DialogsPageType } from '../../redux/state';
 import React from 'react';
+import { sendPrivateMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
 
 type DialogsPropsType = {
    dialogsPage: DialogsPageType;

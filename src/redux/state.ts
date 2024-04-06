@@ -1,33 +1,7 @@
-import { SEND_PRIVATE_MESSAGE, UPDATE_NEW_PRIVATE_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
-import { ADD_POST, UPDATE_NEW_POST_TEXT, profileReducer } from './profileReducer';
+import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
+import { IADD_POST, IUPDATE_NEW_POST_TEXT, profileReducer } from './profileReducer';
 
-export interface IADD_POST {
-   type: 'ADD-POST';
-}
-
-export interface ISEND_PRIVATE_MESSAGE {
-   type: 'SEND-PRIVATE-MESSAGE';
-}
-
-interface IUPDATE_NEW_POST_TEXT {
-   type: 'UPDATE-NEW-POST-TEXT';
-   newText: string;
-}
-
-interface IUPDATE_NEW_MESSAGE_TEXT {
-   type: 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
-   newText: string;
-}
-
-export type SendMessageActionCreatorType = () => ISEND_PRIVATE_MESSAGE;
-
-export type UpdateNewMessageTextActionCreatorType = (text: string) => IUPDATE_NEW_MESSAGE_TEXT;
-
-export type addPostActionCreatorType = () => IADD_POST;
-
-export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
-
-export type ActionType = IADD_POST | IUPDATE_NEW_POST_TEXT | IUPDATE_NEW_MESSAGE_TEXT | ISEND_PRIVATE_MESSAGE;
+export type ActionType = IADD_POST | IUPDATE_NEW_MESSAGE_TEXT | IUPDATE_NEW_POST_TEXT | ISEND_PRIVATE_MESSAGE;
 
 export type PostsDataType = {
    id: number;
@@ -140,21 +114,3 @@ export const store: StoreType = {
       this._callSubscriber(this._state);
    },
 };
-
-// creatorts consts for actions
-
-//action creators
-export const addPostActionCreator: addPostActionCreatorType = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator: UpdateNewPostTextActionCreatorType = (text: string) => ({
-   type: UPDATE_NEW_POST_TEXT,
-   newText: text,
-});
-
-export const updateNewMessageTextActionCreator: UpdateNewMessageTextActionCreatorType = (text: string) => ({
-   type: UPDATE_NEW_PRIVATE_MESSAGE_TEXT,
-   newText: text,
-});
-export const sendPrivateMessageActionCreator: SendMessageActionCreatorType = () => ({
-   type: SEND_PRIVATE_MESSAGE,
-});

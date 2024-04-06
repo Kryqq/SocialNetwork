@@ -19,3 +19,23 @@ export const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
          return state;
    }
 };
+
+export interface IUPDATE_NEW_MESSAGE_TEXT {
+   type: 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
+   newText: string;
+}
+export type UpdateNewMessageTextActionCreatorType = (text: string) => IUPDATE_NEW_MESSAGE_TEXT;
+
+export interface ISEND_PRIVATE_MESSAGE {
+   type: 'SEND-PRIVATE-MESSAGE';
+}
+export type SendMessageActionCreatorType = () => ISEND_PRIVATE_MESSAGE;
+
+export const updateNewMessageTextActionCreator: UpdateNewMessageTextActionCreatorType = (text: string) => ({
+   type: UPDATE_NEW_PRIVATE_MESSAGE_TEXT,
+   newText: text,
+});
+
+export const sendPrivateMessageActionCreator: SendMessageActionCreatorType = () => ({
+   type: SEND_PRIVATE_MESSAGE,
+});
