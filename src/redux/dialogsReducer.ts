@@ -1,10 +1,27 @@
-import { ActionType, DialogsPageType } from './state';
+import { ActionType, DialogsPageType } from './store';
 
 export const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
 
 export const SEND_PRIVATE_MESSAGE = 'SEND-PRIVATE-MESSAGE';
 
-export const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
+const initialState: DialogsPageType = {
+   messagesData: [
+      { id: 1, message: 'Hi' },
+      { id: 2, message: 'Hello' },
+      { id: 3, message: 'How are you?' },
+      { id: 4, message: 'I am fine' },
+   ],
+   dialogsData: [
+      { id: 1, name: 'Вася' },
+      { id: 2, name: 'Петя' },
+      { id: 3, name: 'Женя' },
+      { id: 4, name: 'Лена' },
+      { id: 5, name: 'Игорь' },
+   ],
+   newMessageText: '',
+};
+
+export const dialogsReducer = (state = initialState, action: ActionType) => {
    switch (action.type) {
       case UPDATE_NEW_PRIVATE_MESSAGE_TEXT:
          state.newMessageText = action.newText;

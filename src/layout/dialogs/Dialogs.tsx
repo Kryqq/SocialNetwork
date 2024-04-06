@@ -1,7 +1,7 @@
 import styles from './Dialogs.module.scss';
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
-import { ActionType, DialogsPageType } from '../../redux/state';
+import { ActionType, DialogsPageType } from '../../redux/store';
 import React from 'react';
 import { sendPrivateMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
 

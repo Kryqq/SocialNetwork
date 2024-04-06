@@ -105,7 +105,9 @@ export const store: StoreType = {
    _callSubscriber() {},
    subscribe(observer: (state: StateType) => void) {
       this._callSubscriber = observer;
+
    },
+
    dispatch(action) {
       this._state.profilePage = profileReducer(this._state.profilePage, action);
 
