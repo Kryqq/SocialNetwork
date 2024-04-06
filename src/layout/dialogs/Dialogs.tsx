@@ -1,15 +1,29 @@
 import styles from './Dialogs.module.scss';
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
-import { DialogsPageType } from '../../redux/state';
+import {
+   ActionType,
+   DialogsPageType,
+   sendPrivateMessageActionCreator,
+   updateNewMessageTextActionCreator,
+   updateNewPostTextActionCreator,
+} from '../../redux/state';
 import React from 'react';
 
 type DialogsPropsType = {
-	dialogsPage: DialogsPageType
+   dialogsPage: DialogsPageType;
+   dispatch: (action: ActionType) => void;
+};
 
-}
+export const Dialogs = (props: DialogsPropsType) => {
+   const addMessageHandler = () => {
+      props.dispatch(sendPrivateMessageActionCreator());
+   };
 
-export const Dialogs = (props: DialogsPropsType ) => {
+   const changeMessageHander = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      props.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value));
+   };
+
    return (
       <div className={styles.dialogsMenu}>
          <div className={styles.dialog}>
@@ -21,6 +35,16 @@ export const Dialogs = (props: DialogsPropsType ) => {
             {props.dialogsPage.messagesData.map((message) => (
                <MessageItem key={message.id} messageContent={message.message} />
             ))}
+            <div>
+               <textarea
+                  onChange={changeMessageHander}
+                  value={props.dialogsPage.newMessageText}
+                  placeholder="Введите сообщение"
+               ></textarea>
+            </div>
+            <div>
+               <button onClick={addMessageHandler}>Отправить</button>
+            </div>
          </div>
       </div>
    );
