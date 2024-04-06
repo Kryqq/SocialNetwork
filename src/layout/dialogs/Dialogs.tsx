@@ -1,39 +1,41 @@
 import styles from './Dialogs.module.scss';
 import { DialogItem } from './dialogItem/DialogItem';
 import { MessageItem } from './messages/MessageItem';
-import { ActionType, DialogsPageType } from '../../redux/store';
+import { DialogsDataType, MessagesDataType } from '../../redux/store';
 import React from 'react';
-import { sendPrivateMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
 
 type DialogsPropsType = {
-   dialogsPage: DialogsPageType;
-   dispatch: (action: ActionType) => void;
+   dialogsData: DialogsDataType[];
+   messagesData: MessagesDataType[];
+   newMessageText: string;
+   addNewMessage: () => void;
+   updateNewMessage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export const Dialogs = (props: DialogsPropsType) => {
    const addMessageHandler = () => {
-      props.dispatch(sendPrivateMessageActionCreator());
+	 props.addNewMessage();
    };
 
    const changeMessageHander = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value));
+      props.updateNewMessage(e);
    };
 
    return (
       <div className={styles.dialogsMenu}>
          <div className={styles.dialog}>
-            {props.dialogsPage.dialogsData.map((dialog) => (
+            {props.dialogsData.map((dialog) => (
                <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
             ))}
          </div>
          <div className={styles.messages}>
-            {props.dialogsPage.messagesData.map((message) => (
+            {props.messagesData.map((message) => (
                <MessageItem key={message.id} messageContent={message.message} />
             ))}
             <div>
                <textarea
                   onChange={changeMessageHander}
-                  value={props.dialogsPage.newMessageText}
+                  value={props.newMessageText}
                   placeholder="Введите сообщение"
                ></textarea>
             </div>
