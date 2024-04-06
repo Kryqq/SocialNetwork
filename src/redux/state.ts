@@ -1,3 +1,6 @@
+import { dialogsReducer } from './dialogsReducer';
+import { profileReducer } from './profileReducer';
+
 export interface IADD_POST {
    type: 'ADD-POST';
 }
@@ -130,30 +133,11 @@ export const store: StoreType = {
       this._callSubscriber = observer;
    },
    dispatch(action) {
-      if (action.type === 'ADD-POST') {
-         const newPost = {
-            id: 5,
-            postTitle: this._state.profilePage.newPostText,
-            avatar:
-               'https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj',
-            likes: 0,
-         };
+      this._state.profilePage = profileReducer(this._state.profilePage, action);
 
-         this._state.profilePage.postsData.push(newPost);
-         this._state.profilePage.newPostText = '';
-         this._callSubscriber(this._state); // используется местный стейт
-      } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-         this._state.profilePage.newPostText = action.newText;
-         this._callSubscriber(this._state);
-      } else if (action.type === 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT') {
-         this._state.dialogsPage.newMessageText = action.newText;
-         this._callSubscriber(this._state);
-      } else if (action.type === 'SEND-PRIVATE-MESSAGE') {
-         const newPrivateMessage = this._state.dialogsPage.newMessageText;
-         this._state.dialogsPage.newMessageText = '';
-         this._state.dialogsPage.messagesData.push({ id: 6, message: newPrivateMessage });
-         this._callSubscriber(this._state);
-      }
+      this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+      this._callSubscriber(this._state);
    },
 };
 
