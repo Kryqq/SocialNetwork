@@ -1,8 +1,8 @@
 import { ActionType, ProfilePageType } from './state';
 
-const ADD_POST = 'ADD-POST';
+export const ADD_POST = 'ADD-POST';
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export const profileReducer = (state: ProfilePageType, action: ActionType) => {
    if (action.type === ADD_POST) {

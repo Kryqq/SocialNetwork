@@ -1,5 +1,5 @@
-import { dialogsReducer } from './dialogsReducer';
-import { profileReducer } from './profileReducer';
+import { SEND_PRIVATE_MESSAGE, UPDATE_NEW_PRIVATE_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
+import { ADD_POST, UPDATE_NEW_POST_TEXT, profileReducer } from './profileReducer';
 
 export interface IADD_POST {
    type: 'ADD-POST';
@@ -142,13 +142,6 @@ export const store: StoreType = {
 };
 
 // creatorts consts for actions
-const ADD_POST = 'ADD-POST';
-
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
-const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
-
-const SEND_PRIVATE_MESSAGE = 'SEND-PRIVATE-MESSAGE';
 
 //action creators
 export const addPostActionCreator: addPostActionCreatorType = () => ({ type: ADD_POST });

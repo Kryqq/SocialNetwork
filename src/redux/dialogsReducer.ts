@@ -1,8 +1,8 @@
 import { ActionType, DialogsPageType } from './state';
 
-const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
+export const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
 
-const SEND_PRIVATE_MESSAGE = 'SEND-PRIVATE-MESSAGE';
+export const SEND_PRIVATE_MESSAGE = 'SEND-PRIVATE-MESSAGE';
 
 export const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
    if (action.type === UPDATE_NEW_PRIVATE_MESSAGE_TEXT) {
