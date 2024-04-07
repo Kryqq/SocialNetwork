@@ -1,29 +1,25 @@
 import { Dialogs } from './Dialogs';
 import { sendPrivateMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
-import { StoreType } from '../../redux/reduxStore';
+import { DispatchType, StateType } from '../../redux/reduxStore';
 import React from 'react';
+import { connect } from 'react-redux';
 
-type DialogsContainerPropsType = {
-   store: StoreType;
+
+const mapStateToProps = (state: StateType) => {
+   return {
+      dialogsPage: state.dialogsPage,
+   };
 };
 
-export const DialogsContainer = (props: DialogsContainerPropsType) => {
-   const state = props.store.getState();
-   const addNewMessage = () => {
-      props.store.dispatch(sendPrivateMessageActionCreator());
+const mapDispatchToProps = (dispatch: DispatchType) => {
+   return {
+      updateNewMessage: (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+         dispatch(updateNewMessageTextActionCreator(e.currentTarget.value));
+      },
+      addNewMessage: () => {
+         dispatch(sendPrivateMessageActionCreator());
+      },
    };
-
-   const updateNewMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      props.store.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value));
-   };
-
-   return (
-      <Dialogs
-         addNewMessage={addNewMessage}
-         updateNewMessage={updateNewMessage}
-         dialogsData={state.dialogsPage.dialogsData}
-         messagesData={state.dialogsPage.messagesData}
-         newMessageText={state.dialogsPage.newMessageText}
-      />
-   );
 };
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
