@@ -10,8 +10,7 @@ import { Settings } from './layout/settings/Settings';
 
 import { Route } from 'react-router-dom';
 import React from 'react';
-
-
+import { Users } from './layout/users/Users';
 
 function App() {
    return (
@@ -20,7 +19,8 @@ function App() {
          <Navbar />
          <div className="app-content">
             <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/profile" render={() => <Profile  />} />
+            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/users" render={() => <Users />} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => <Settings />} />
