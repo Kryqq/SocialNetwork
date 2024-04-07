@@ -4,7 +4,21 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 
-const initialState = {
+export type UserType = {
+   id: number;
+   followed: boolean;
+   fullName: string;
+   status: string;
+   location: {
+      city: string;
+      country: string;
+   };
+};
+type usersStateType = {
+   users: Array<UserType>;
+};
+
+const initialState: usersStateType = {
    users: [
       {
          id: 1,
@@ -60,7 +74,7 @@ export const usersReducer = (state = initialState, action: ActionType) => {
             }),
          };
       case SET_USERS:
-	    return { ...state, users: [...state.users, ...action.users] };
+         return { ...state, users: [...state.users, ...action.users] };
 
       default:
          return state;
@@ -78,12 +92,17 @@ export interface IUNFOLLOW_USER {
 }
 export interface ISET_USERS {
    type: 'SET-USERS';
-   users: Array<{}>;
+   users: Array<UserType>;
 }
 
 export type followUserActionCreatorType = (userId: number) => IFOLLOW_USER;
 export type unfollowUserActionCreatorType = (userId: number) => IUNFOLLOW_USER;
-export type setUsersActionCreatorType = (users: Array<{}>) => ISET_USERS;
+export type setUsersActionCreatorType = (users: Array<UserType>) => ISET_USERS;
+
+export const setUserActionCreator: setUsersActionCreatorType = (users: Array<UserType>) => ({
+   type: SET_USERS,
+   users: users,
+});
 
 export const followUserActionCreator: followUserActionCreatorType = (userId: number) => ({ type: FOLLOW, userId });
 
@@ -91,4 +110,3 @@ export const unfollowUserActionCreator: unfollowUserActionCreatorType = (userId:
    type: UNFOLLOW,
    userId: userId,
 });
-export type setUsersActionCreator = (users: Array<{}>) => { type: 'SET-USERS'; users: Array<{}> };
