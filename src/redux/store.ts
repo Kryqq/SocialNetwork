@@ -1,7 +1,15 @@
 import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
 import { IADD_POST, IUPDATE_NEW_POST_TEXT, profileReducer } from './profileReducer';
+import { IFOLLOW_USER, ISET_USERS, IUNFOLLOW_USER } from './usersReducer';
 
-export type ActionType = IADD_POST | IUPDATE_NEW_MESSAGE_TEXT | IUPDATE_NEW_POST_TEXT | ISEND_PRIVATE_MESSAGE;
+export type ActionType =
+   | IADD_POST
+   | IUPDATE_NEW_MESSAGE_TEXT
+   | IUPDATE_NEW_POST_TEXT
+   | ISEND_PRIVATE_MESSAGE
+   | IFOLLOW_USER
+   | IUNFOLLOW_USER
+   | ISET_USERS;
 
 export type PostsDataType = {
    id: number;
@@ -105,7 +113,6 @@ export const store: StoreType = {
    _callSubscriber() {},
    subscribe(observer: (state: StateType) => void) {
       this._callSubscriber = observer;
-
    },
 
    dispatch(action) {

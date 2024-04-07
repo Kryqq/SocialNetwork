@@ -67,13 +67,13 @@ export const profileReducer = (state = initialState, action: ActionType) => {
 export interface IADD_POST {
    type: 'ADD-POST';
 }
-export type addPostActionCreatorType = () => IADD_POST;
+
 
 export interface IUPDATE_NEW_POST_TEXT {
    type: 'UPDATE-NEW-POST-TEXT';
    newText: string;
 }
-
+export type addPostActionCreatorType = () => IADD_POST;
 export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
 
 export const addPostActionCreator: addPostActionCreatorType = () => ({ type: ADD_POST });
