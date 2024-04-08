@@ -1,0 +1,24 @@
+.usersWrapper {
+   width: 100%;
+}
+.userCard {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 15%;
+   img {
+      width: 50%;
+	 border-radius: 50%;
+   }
+   .userName {
+      padding: 5px 0px 10px 0px;
+   }
+}
+.userTable {
+   display: flex;
+   border-bottom: 1px solid black;
+   padding: 10px;
+}
+.userInfo {
+   width: 80%;
+}
