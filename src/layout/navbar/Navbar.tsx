@@ -11,6 +11,7 @@ const navbarItems: NavbarItemType[] = [
       navItemTitle: 'Профиль',
       navItemPath: '/profile',
    },
+   { navItemTitle: 'users', navItemPath: '/users' },
    {
       navItemTitle: 'Сообщения',
       navItemPath: '/dialogs',
@@ -33,7 +34,7 @@ export const Navbar = () => {
    return (
       <div className={styles.navbar}>
          <ul>
-            {navbarItems.map((item, key ) => (
+            {navbarItems.map((item, key) => (
                <li key={key}>
                   <NavLink key={item.navItemTitle} activeClassName={styles.active} to={item.navItemPath}>
                      {item.navItemTitle}
