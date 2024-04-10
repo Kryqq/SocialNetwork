@@ -2,9 +2,10 @@ import { ActionType } from './store';
 
 const FOLLOW = 'FOLLOW' as const;
 const UNFOLLOW = 'UNFOLLOW' as const;
-const SET_USERS = 'SET-USERS' as const;
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE' as const;
-const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT' as const;
+const SET_USERS = 'SET_USERS' as const;
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE' as const;
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT' as const;
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING' as const;
 
 export type UserType = {
    name: string;
@@ -23,6 +24,7 @@ type usersStateType = {
    totalUsersCount: number;
    pageSize: number;
    currentPage: number;
+   isFetching: boolean;
 };
 
 const initialState: usersStateType = {
@@ -30,6 +32,7 @@ const initialState: usersStateType = {
    pageSize: 5,
    totalUsersCount: 0,
    currentPage: 1,
+   isFetching: false,
 };
 
 export const usersReducer = (state = initialState, action: ActionType) => {
@@ -60,6 +63,9 @@ export const usersReducer = (state = initialState, action: ActionType) => {
          return { ...state, currentPage: action.currentPage };
       case SET_TOTAL_USERS_COUNT:
          return { ...state, totalUsersCount: action.count };
+      case TOGGLE_FETCHING:
+		console.log(action.isFetching);
+         return { ...state, isFetching: action.isFetching };
 
       default:
          return state;
@@ -67,32 +73,37 @@ export const usersReducer = (state = initialState, action: ActionType) => {
 };
 
 export interface IFOLLOW_USER {
-   type: 'FOLLOW';
+   type: typeof FOLLOW;
    userId: number;
 }
 
 export interface IUNFOLLOW_USER {
-   type: 'UNFOLLOW';
+   type: typeof UNFOLLOW;
    userId: number;
 }
 export interface ISET_USERS {
-   type: 'SET-USERS';
+   type: typeof SET_USERS;
    users: Array<UserType>;
 }
 export interface ISET_CURRENT_PAGE {
-   type: 'SET-CURRENT-PAGE';
+   type: typeof SET_CURRENT_PAGE;
    currentPage: number;
 }
 export interface ISET_TOTAL_USERS_COUNT {
-   type: 'SET-TOTAL-USERS-COUNT';
+   type: typeof SET_TOTAL_USERS_COUNT;
    count: number;
+}
+export interface ISET_IS_FETCHING {
+   type: typeof TOGGLE_FETCHING;
+   isFetching: boolean;
 }
 
 export type followUserActionCreatorType = (userId: number) => IFOLLOW_USER;
 export type unfollowUserActionCreatorType = (userId: number) => IUNFOLLOW_USER;
 export type setUsersActionCreatorType = (users: Array<UserType>) => ISET_USERS;
 export type setCurrentPageActionCreatorType = (currentPage: number) => ISET_CURRENT_PAGE;
-export type setTotalUsersCount = (totalUsersCount: number) => ISET_TOTAL_USERS_COUNT;
+export type setTotalUsersCountType = (totalUsersCount: number) => ISET_TOTAL_USERS_COUNT;
+export type setIsFetchingType = (isFetching: boolean) => ISET_IS_FETCHING;
 
 export const setUserActionCreator: setUsersActionCreatorType = (users: Array<UserType>) => ({
    type: SET_USERS,
@@ -114,4 +125,9 @@ export const setCurrentPageActionCreator: setCurrentPageActionCreatorType = (cur
 export const setTotalUsersCountActionCreator = (totalUsersCount: number) => ({
    type: SET_TOTAL_USERS_COUNT,
    count: totalUsersCount,
+});
+
+export const toggleIsFetchingActionCreator = (isFetching: boolean) => ({
+   type: TOGGLE_FETCHING,
+   isFetching,
 });
