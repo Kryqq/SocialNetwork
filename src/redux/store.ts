@@ -1,6 +1,13 @@
 import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
 import { IADD_POST, IUPDATE_NEW_POST_TEXT, profileReducer } from './profileReducer';
-import { IFOLLOW_USER, ISET_CURRENT_PAGE, ISET_TOTAL_USERS_COUNT, ISET_USERS, IUNFOLLOW_USER } from './usersReducer';
+import {
+   IFOLLOW_USER,
+   ISET_CURRENT_PAGE,
+   ISET_IS_FETCHING,
+   ISET_TOTAL_USERS_COUNT,
+   ISET_USERS,
+   IUNFOLLOW_USER,
+} from './usersReducer';
 
 export type ActionType =
    | IADD_POST
@@ -11,7 +18,8 @@ export type ActionType =
    | IUNFOLLOW_USER
    | ISET_USERS
    | ISET_CURRENT_PAGE
-   | ISET_TOTAL_USERS_COUNT;
+   | ISET_TOTAL_USERS_COUNT
+   | ISET_IS_FETCHING;
 
 export type PostsDataType = {
    id: number;
