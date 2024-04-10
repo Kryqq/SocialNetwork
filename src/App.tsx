@@ -1,4 +1,4 @@
-import './App.css';
+import React from 'react';
 import { Header } from './layout/header/Header';
 import { Profile } from './layout/profile/Profile';
 import { Navbar } from './layout/navbar/Navbar';
@@ -8,7 +8,7 @@ import { Music } from './layout/music/Music';
 import { Settings } from './layout/settings/Settings';
 import { Route } from 'react-router-dom';
 import { UsersContainer } from './layout/users/UsersContainer';
-import React from 'react';
+import './App.css';
 
 function App() {
    return (

@@ -1,5 +1,5 @@
+import React from 'react';
 import { connect } from 'react-redux';
-
 import { DispatchType, StateType } from '../../redux/reduxStore';
 import {
    UserType,
@@ -9,8 +9,7 @@ import {
    setUserActionCreator,
    unfollowUserActionCreator,
 } from '../../redux/usersReducer';
-import { Users } from './Users';
-import React from 'react';
+import { UsersAPIcomponent } from './UsersAPIcomponent';
 
 const mapStateToProps = (state: StateType) => {
    return {
@@ -41,4 +40,4 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
    };
 };
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIcomponent);
