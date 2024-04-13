@@ -17,7 +17,7 @@ const mapStateToProps = (state: StateType) => {
       pageSize: state.usersPage.pageSize,
       totalCount: state.usersPage.totalUsersCount,
       currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching,
+      isFetching: state.usersPage.isFetching
    };
 };
 
