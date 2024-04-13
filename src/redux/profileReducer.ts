@@ -1,9 +1,9 @@
 import { ActionType, ProfilePageType } from './store';
 
-export const ADD_POST = 'ADD-POST';
+export const ADD_POST = 'ADD_POST' as const;
 
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW-POST_TEXT' as const;
+export const SET_USER_PROFILE = 'SET_USER_PROFILE' as const;
 
 type ContactsType = {
    facebook: string;
@@ -66,6 +66,7 @@ const initialState: ProfilePageType = {
 };
 
 export const profileReducer = (state = initialState, action: ActionType) => {
+
    switch (action.type) {
       case ADD_POST:
          const newPost = {
@@ -93,16 +94,16 @@ export const profileReducer = (state = initialState, action: ActionType) => {
 };
 
 export interface IADD_POST {
-   type: 'ADD-POST';
+   type: typeof ADD_POST;
 }
 
 export interface IUPDATE_NEW_POST_TEXT {
-   type: 'UPDATE-NEW-POST-TEXT';
+   type: typeof UPDATE_NEW_POST_TEXT;
    newText: string;
 }
 
 export interface ISET_USER_PROFILE {
-   type: 'SET_USER_PROFILE';
+   type: typeof SET_USER_PROFILE;
    profile: ProfileType;
 }
 
@@ -110,9 +111,9 @@ export type addPostActionCreatorType = () => IADD_POST;
 export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
 export type setUserProfileActionCreatorType = (profile: ProfileType) => ISET_USER_PROFILE;
 
-export const addPostActionCreator: addPostActionCreatorType = () => ({ type: ADD_POST });
+export const addPost: addPostActionCreatorType = () => ({ type: ADD_POST });
 
-export const updateNewPostTextActionCreator: UpdateNewPostTextActionCreatorType = (text: string) => ({
+export const updateNewPostText: UpdateNewPostTextActionCreatorType = (text: string) => ({
    type: UPDATE_NEW_POST_TEXT,
    newText: text,
 });
