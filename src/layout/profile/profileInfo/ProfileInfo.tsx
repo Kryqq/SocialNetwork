@@ -1,6 +1,18 @@
 import React from 'react';
 import styles from './ProfileInfo.module.scss';
-const ProfileInfo = () => {
+import { ProfileType } from '../../../redux/profileReducer';
+import { Preloader } from '../../components/common/preloader/Preloader';
+import defaultPhoto from '../../../assets/userPhoto.webp';
+
+type ProfileInfoType = {
+   profile: ProfileType | null;
+};
+
+const ProfileInfo = (props: ProfileInfoType) => {
+   if (!props.profile) {
+      return <Preloader />;
+   }
+
    return (
       <div>
          <div>
@@ -14,8 +26,22 @@ const ProfileInfo = () => {
             <img
                className={styles.profileAvatar}
                alt="avatar"
-               src="https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj"
+               src={props.profile.photos.small !== null ? props.profile.photos.small : defaultPhoto}
             ></img>
+            <div className={styles.socials}>
+               <span>Мои социальные сети</span>
+               <span>{props.profile.contacts.github}</span>
+               <span>{props.profile.contacts.instagram}</span>
+               <span>{props.profile.contacts.vk}</span>
+               <span>{props.profile.contacts.youtube}</span>
+            </div>
+            <div className={styles.socials}>
+			<span>{props.profile.aboutMe}</span>
+            </div>
+            <div className={styles.workStatus}>
+               <span>{props.profile.lookingForAJobDescription}</span>
+               {props.profile.lookingForAJob ? <span>Ищу работу</span> : <span>Не ищу работу</span>}
+            </div>
          </div>
       </div>
    );
