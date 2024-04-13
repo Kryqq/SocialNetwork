@@ -1,6 +1,5 @@
 import React from 'react';
 import { Header } from './layout/header/Header';
-import { Profile } from './layout/profile/Profile';
 import { Navbar } from './layout/navbar/Navbar';
 import { DialogsContainer } from './layout/dialogs/DialogsContainer';
 import { News } from './layout/news/News';
@@ -9,6 +8,9 @@ import { Settings } from './layout/settings/Settings';
 import { Route } from 'react-router-dom';
 import { UsersContainer } from './layout/users/UsersContainer';
 import './App.css';
+import { ProfileContainer } from './layout/profile/ProfileContainer';
+
+
 
 function App() {
    return (
@@ -17,7 +19,7 @@ function App() {
          <Navbar />
          <div className="app-content">
             <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/profile" render={() => <ProfileContainer />} />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
