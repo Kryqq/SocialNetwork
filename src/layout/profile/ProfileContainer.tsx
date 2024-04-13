@@ -4,7 +4,7 @@ import { StateType } from '../../redux/store';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: StateType) => ({
-   propfile: state.profilePage.profile,
+   profile: state.profilePage.profile,
 });
 
 export const ProfileContainer = connect(mapStateToProps, { setUserProfile })(ProfileApiComponent);
