@@ -1,8 +1,8 @@
 import { ActionType, DialogsPageType } from './store';
 
-export const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
+export const UPDATE_NEW_PRIVATE_MESSAGE_TEXT = 'UPDATE_NEW_PRIVATE_MESSAGE_TEXT' as const;
 
-export const SEND_PRIVATE_MESSAGE = 'SEND-PRIVATE-MESSAGE';
+export const SEND_PRIVATE_MESSAGE = 'SEND_PRIVATE_MESSAGE' as const;
 
 const initialState: DialogsPageType = {
    messagesData: [
@@ -38,13 +38,13 @@ export const dialogsReducer = (state = initialState, action: ActionType) => {
 };
 
 export interface IUPDATE_NEW_MESSAGE_TEXT {
-   type: 'UPDATE-NEW-PRIVATE-MESSAGE-TEXT';
+   type: typeof UPDATE_NEW_PRIVATE_MESSAGE_TEXT;
    newText: string;
 }
 export type UpdateNewMessageTextActionCreatorType = (text: string) => IUPDATE_NEW_MESSAGE_TEXT;
 
 export interface ISEND_PRIVATE_MESSAGE {
-   type: 'SEND-PRIVATE-MESSAGE';
+   type: typeof SEND_PRIVATE_MESSAGE;
 }
 export type SendMessageActionCreatorType = () => ISEND_PRIVATE_MESSAGE;
 
