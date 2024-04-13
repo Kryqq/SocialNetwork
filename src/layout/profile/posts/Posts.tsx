@@ -6,14 +6,14 @@ type PostsPropsType = {
    postsData: PostsDataType[];
    newPostText: string;
    updateNewPostText: (text: string) => void;
-   addPostHandler: () => void;
+   addPost: () => void;
 };
 
 const ref: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
 export const Posts = (props: PostsPropsType) => {
    const addPostHandler = () => {
-      props.addPostHandler();
+      props.addPost();
    };
 
    const postChangeHandler = () => {
