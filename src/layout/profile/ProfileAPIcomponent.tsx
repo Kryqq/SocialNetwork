@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { Profile } from './Profile';
 import { ProfileType } from '../../redux/profileReducer';
 import { RouteComponentProps } from 'react-router-dom';
+import { usersAPI } from '../../api/api';
 interface RouteParams {
    userId: string;
 }
@@ -17,7 +17,7 @@ export class ProfileApiComponent extends React.Component<ProfilePropsType & Rout
          userId = '2';
       }
 
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then((response) => {
+      usersAPI.setUserProfile(userId).then((response) => {
          this.props.setUserProfile(response.data);
       });
    }
