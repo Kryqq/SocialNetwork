@@ -1,12 +1,13 @@
 import { ISET_USER_DATA } from './authReducer';
-import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
-import { IADD_POST, IUPDATE_NEW_POST_TEXT, profileReducer, ISET_USER_PROFILE, ProfileType } from './profileReducer';
+import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT } from './dialogsReducer';
+import { IADD_POST, IUPDATE_NEW_POST_TEXT, ISET_USER_PROFILE, ProfileType } from './profileReducer';
 import {
    IFOLLOW_USER,
    ISET_CURRENT_PAGE,
    ISET_IS_FETCHING,
    ISET_TOTAL_USERS_COUNT,
    ISET_USERS,
+   ITOGGLE_FOLLOWING_PROGRESS,
    IUNFOLLOW_USER,
 } from './usersReducer';
 
@@ -22,7 +23,8 @@ export type ActionType =
    | ISET_TOTAL_USERS_COUNT
    | ISET_IS_FETCHING
    | ISET_USER_PROFILE
-   | ISET_USER_DATA;
+   | ISET_USER_DATA
+   | ITOGGLE_FOLLOWING_PROGRESS;
 
 export type PostsDataType = {
    id: number;
