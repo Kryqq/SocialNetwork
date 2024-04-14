@@ -3,6 +3,7 @@ import userPhoto from '../../assets/userPhoto.webp';
 import styles from './Users.module.scss';
 import { UserType } from '../../redux/usersReducer';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 type UsersType = {
    totalCount: number;
@@ -41,9 +42,46 @@ export const Users = (props: UsersType) => {
                   </NavLink>
                   <span className={styles.userName}>{u.name} </span>
                   {u.followed ? (
-                     <button onClick={() => props.unfollowUser(u.id)}>Unfollow</button>
+                     <button
+                        onClick={() => {
+                           axios
+                              .delete(
+                                 `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+
+                                 { withCredentials: true,
+							headers: {
+								"API-KEY": "8fef2b78-2aab-47e8-b036-0d52e54939f0"
+							}
+
+						    }
+                              )
+                              .then((response) => {
+                                 if (response.data.resultCode === 0) {
+                                    props.unfollowUser(u.id);
+                                 }
+                              });
+                        }}
+                     >
+                        Unfollow
+                     </button>
                   ) : (
-                     <button onClick={() => props.followUser(u.id)}>Follow</button>
+                     <button
+                        onClick={() => {
+                           axios
+                              .post(
+                                 `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                                 {},
+                                 { withCredentials: true }
+                              )
+                              .then((response) => {
+                                 if (response.data.resultCode === 0) {
+                                    props.followUser(u.id);
+                                 }
+                              });
+                        }}
+                     >
+                        Follow
+                     </button>
                   )}
                </div>
                <div className={styles.userInfo}>
