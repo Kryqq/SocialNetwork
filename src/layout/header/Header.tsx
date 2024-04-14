@@ -1,5 +1,12 @@
-import React from 'react';
+import { AuthReducerType } from '../../redux/authReducer';
 import styles from './Header.module.scss';
-export const Header = () => {
-   return <div className={styles.header}>header</div>;
+
+type HeaderPropsType = {
+   isAuth: boolean;
+   login: string | null;
+   setUserAuthData: (data: AuthReducerType) => void;
+};
+
+export const Header = (props: HeaderPropsType) => {
+   return <div className={styles.header}>{props.isAuth === true ? <div>login</div> : <button>login</button>}</div>;
 };
