@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Header } from './layout/header/Header';
+
 import { Navbar } from './layout/navbar/Navbar';
 import { DialogsContainer } from './layout/dialogs/DialogsContainer';
 import { News } from './layout/news/News';
@@ -10,12 +10,12 @@ import { Route } from 'react-router-dom';
 import { UsersContainer } from './layout/users/UsersContainer';
 import { ProfileContainer } from './layout/profile/ProfileContainer';
 
-
+import { HeaderContainer } from './layout/header/HeaderContainer';
 
 function App() {
    return (
       <div className="App">
-         <Header />
+         <HeaderContainer />
          <Navbar />
          <div className="app-content">
             <Route path="/dialogs" render={() => <DialogsContainer />} />
