@@ -1,6 +1,6 @@
 import { setUserProfile } from '../../redux/profileReducer';
 import { ProfileApiComponent } from './ProfileAPIcomponent';
-import { StateType } from '../../redux/store';
+import { StateType } from '../../redux/reduxStore';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
