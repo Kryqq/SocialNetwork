@@ -1,3 +1,4 @@
+import { ISET_USER_DATA } from './authReducer';
 import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT, dialogsReducer } from './dialogsReducer';
 import { IADD_POST, IUPDATE_NEW_POST_TEXT, profileReducer, ISET_USER_PROFILE, ProfileType } from './profileReducer';
 import {
@@ -20,7 +21,8 @@ export type ActionType =
    | ISET_CURRENT_PAGE
    | ISET_TOTAL_USERS_COUNT
    | ISET_IS_FETCHING
-   | ISET_USER_PROFILE;
+   | ISET_USER_PROFILE
+   | ISET_USER_DATA;
 
 export type PostsDataType = {
    id: number;
