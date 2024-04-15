@@ -12,31 +12,18 @@ type UsersType = {
    currentPage: number;
    users: Array<UserType>;
    followingInProgress: Array<number>;
-   followUser: (userId: number) => void;
-   unfollowUser: (userId: number) => void;
    onPageChanged: (pageNumber: number) => void;
    toggleFollowingProgress: (isFetching: boolean, userId: number) => void;
+   followThunkCreator: (id: number) => void;
+   unfollowThunkCreator: (id: number) => void;
 };
 
 export const Users = (props: UsersType) => {
-   const pagesCount: number = Math.ceil(props.totalCount / props.pageSize);
    const unfollowUserHandler = (id: number) => {
-      props.toggleFollowingProgress(true, id);
-      usersAPI.unfollowUser(id).then((response) => {
-         if (response.resultCode === 0) {
-            props.unfollowUser(id);
-         }
-         props.toggleFollowingProgress(false, id);
-      });
+      props.unfollowThunkCreator(id);
    };
    const followUserHandler = (id: number) => {
-      props.toggleFollowingProgress(true, id);
-      usersAPI.followUser(id).then((response) => {
-         if (response.resultCode === 0) {
-            props.followUser(id);
-         }
-         props.toggleFollowingProgress(false, id);
-      });
+      props.followThunkCreator(id);
    };
 
    let pages = [];
