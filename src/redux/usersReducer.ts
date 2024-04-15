@@ -1,4 +1,6 @@
+import { Dispatch } from 'redux';
 import { ActionType } from './store';
+import { usersAPI } from '../api/api';
 
 const FOLLOW = 'FOLLOW' as const;
 const UNFOLLOW = 'UNFOLLOW' as const;
@@ -150,3 +152,39 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
    isFetching,
    userId,
 });
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+   return (dispatch: Dispatch) => {
+      dispatch(toggleIsFetching(true));
+      usersAPI.getUsers(currentPage, pageSize).then((data) => {
+         dispatch(setCurrentPage(currentPage));
+         dispatch(toggleIsFetching(false));
+         dispatch(setUsers(data.items));
+         dispatch(setTotalUsersCount(data.totalCount));
+      });
+   };
+};
+
+export const followThunkCreator = (id: number) => {
+   return (dispatch: Dispatch) => {
+      dispatch(toggleFollowingProgress(true, id));
+      usersAPI.followUser(id).then((response) => {
+         if (response.resultCode === 0) {
+            dispatch(followUser(id));
+         }
+         dispatch(toggleFollowingProgress(false, id));
+      });
+   };
+};
+
+export const unfollowThunkCreator = (id: number) => {
+   return (dispatch: Dispatch) => {
+      dispatch(toggleFollowingProgress(true, id));
+      usersAPI.unfollowUser(id).then((response) => {
+         if (response.resultCode === 0) {
+            dispatch(unfollowUser(id));
+         }
+         dispatch(toggleFollowingProgress(false, id));
+      });
+   };
+};
