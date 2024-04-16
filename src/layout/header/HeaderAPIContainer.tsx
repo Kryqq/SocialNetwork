@@ -1,7 +1,5 @@
 import React from 'react';
 import { Header } from './Header';
-import { AuthReducerType } from '../../redux/authReducer';
-import { usersAPI } from '../../api/api';
 
 type HeaderPropsType = {
    isAuth: boolean;
