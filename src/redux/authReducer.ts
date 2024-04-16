@@ -1,4 +1,6 @@
+import { Dispatch } from 'redux';
 import { ActionType } from './store';
+import { usersAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA' as const;
 
@@ -35,3 +37,11 @@ export const setUserAuthData: setUserDataActionCreatorType = (data: AuthReducerT
    type: SET_USER_DATA,
    data,
 });
+
+export const setUsersAuthThunkCreator = () => {
+   return (dispatch: Dispatch) => {
+      usersAPI.setUserAuthData().then((response) => {
+         dispatch(setUserAuthData(response));
+      });
+   };
+};
