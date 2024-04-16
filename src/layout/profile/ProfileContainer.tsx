@@ -1,4 +1,4 @@
-import { setUserProfile } from '../../redux/profileReducer';
+import { setUserProfile, setUserProfileThunkCreator } from '../../redux/profileReducer';
 import { ProfileApiComponent } from './ProfileAPIcomponent';
 import { StateType } from '../../redux/reduxStore';
 import { connect } from 'react-redux';
@@ -10,7 +10,4 @@ const mapStateToProps = (state: StateType) => ({
 
 const withUrlDataContainerComponent = withRouter(ProfileApiComponent);
 
-export const ProfileContainer = 
-connect(mapStateToProps, 
-	  {setUserProfile })
-	  (withUrlDataContainerComponent);
+export const ProfileContainer = connect(mapStateToProps, { setUserProfileThunkCreator })(withUrlDataContainerComponent);
