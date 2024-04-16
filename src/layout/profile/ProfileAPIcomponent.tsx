@@ -2,12 +2,12 @@ import React from 'react';
 import { Profile } from './Profile';
 import { ProfileType } from '../../redux/profileReducer';
 import { RouteComponentProps } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
+
 interface RouteParams {
    userId: string;
 }
 type ProfilePropsType = {
-   setUserProfile: (profile: ProfileType) => void;
+   setUserProfileThunkCreator: (userId: string) => void;
    profile: ProfileType | null;
 };
 export class ProfileApiComponent extends React.Component<ProfilePropsType & RouteComponentProps<RouteParams>> {
@@ -17,9 +17,7 @@ export class ProfileApiComponent extends React.Component<ProfilePropsType & Rout
          userId = '2';
       }
 
-      usersAPI.setUserProfile(userId).then((response) => {
-         this.props.setUserProfile(response.data);
-      });
+      this.props.setUserProfileThunkCreator(userId);
    }
    render() {
       return <Profile {...this.props} />;
