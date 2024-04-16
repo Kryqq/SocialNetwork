@@ -5,7 +5,7 @@ import { PostsContainer } from './posts/PostsContainer';
 import { ProfileType } from '../../redux/profileReducer';
 
 type ProfilePropsType = {
-   setUserProfile: (profile: ProfileType) => void;
+   setUserProfileThunkCreator: (userId: string) => void;
    profile: ProfileType | null;
 };
 
