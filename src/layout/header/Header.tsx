@@ -1,4 +1,4 @@
-import { AuthReducerType } from '../../redux/authReducer';
+
 import styles from './Header.module.scss';
 
 type HeaderPropsType = {
