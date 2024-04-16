@@ -6,16 +6,12 @@ import { usersAPI } from '../../api/api';
 type HeaderPropsType = {
    isAuth: boolean;
    login: string | null;
-   setUserAuthData: (data: AuthReducerType) => void;
+   setUsersAuthThunkCreator: () => void;
 };
 
 export class HeaderAPIContainer extends React.Component<HeaderPropsType> {
    componentDidMount() {
-      usersAPI.setUserAuthData().then((response) => {
-         if (response.data.resultCode === 0) {
-            this.props.setUserAuthData(response.data.data);
-         }
-      });
+      this.props.setUsersAuthThunkCreator();
    }
    render() {
       return <Header {...this.props} />;
