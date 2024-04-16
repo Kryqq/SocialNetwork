@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { usersAPI } from '../api/api';
 import { ActionType, ProfilePageType } from './store';
 
 export const ADD_POST = 'ADD_POST' as const;
@@ -66,7 +68,6 @@ const initialState: ProfilePageType = {
 };
 
 export const profileReducer = (state = initialState, action: ActionType) => {
-
    switch (action.type) {
       case ADD_POST:
          const newPost = {
@@ -121,3 +122,11 @@ export const setUserProfile = (profile: ProfileType) => ({
    type: SET_USER_PROFILE,
    profile,
 });
+
+export const setUserProfileThunkCreator = (userId: string) => {
+   return (dispatch: Dispatch) => {
+      usersAPI.setUserProfile(userId).then((response) => {
+         dispatch(setUserProfile(response));
+      });
+   };
+};
