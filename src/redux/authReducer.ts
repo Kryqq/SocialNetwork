@@ -41,7 +41,9 @@ export const setUserAuthData: setUserDataActionCreatorType = (data: AuthReducerT
 export const setUsersAuthThunkCreator = () => {
    return (dispatch: Dispatch) => {
       usersAPI.setUserAuthData().then((response) => {
-         dispatch(setUserAuthData(response));
+         if (response.resultCode === 0) {
+            dispatch(setUserAuthData(response));
+         }
       });
    };
 };
