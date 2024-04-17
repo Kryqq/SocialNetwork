@@ -24,6 +24,7 @@ function App() {
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => <Settings />} />
+            <Route path="/login" render={() => <Settings />} />
          </div>
       </div>
    );
