@@ -3,6 +3,8 @@ import styles from './ProfileInfo.module.scss';
 import { ProfileType } from '../../../redux/profileReducer';
 import { Preloader } from '../../components/common/preloader/Preloader';
 import defaultPhoto from '../../../assets/userPhoto.webp';
+import { Profile } from '../Profile';
+import { ProfileStatus } from './ProfileStatus';
 
 type ProfileInfoType = {
    profile: ProfileType | null;
@@ -16,13 +18,14 @@ const ProfileInfo = (props: ProfileInfoType) => {
    return (
       <div>
          <div>
-            <img
+            {/* <img
                className={styles.profileCover}
                alt="profileCover"
                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwM1pIUa4tHBRHNNfSlrch8EKLu68CNSaQ3A&usqp=CAU"
-            ></img>
+            ></img> */}
          </div>
          <div className={styles.profileInfo}>
+            <ProfileStatus status="Hello!!!" />
             <img
                className={styles.profileAvatar}
                alt="avatar"
@@ -36,7 +39,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                <span>{props.profile.contacts.youtube}</span>
             </div>
             <div className={styles.socials}>
-			<span>{props.profile.aboutMe}</span>
+               <span>{props.profile.aboutMe}</span>
             </div>
             <div className={styles.workStatus}>
                <span>{props.profile.lookingForAJobDescription}</span>

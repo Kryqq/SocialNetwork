@@ -13,6 +13,6 @@ const mapStateToProps = (state: StateType) => ({
 
 export const ProfileContainer = compose<ComponentType>(
    connect(mapStateToProps, { setUserProfileThunkCreator }),
-   WithAuthRedirect,
+//    WithAuthRedirect,
    withRouter
 )(ProfileApiComponent);
