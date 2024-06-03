@@ -11,6 +11,7 @@ type DialogsPropsType = {
 };
 
 export const Dialogs = (props: DialogsPropsType) => {
+
    const addMessageHandler = () => {
       props.addNewMessage();
    };
