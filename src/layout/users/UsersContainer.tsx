@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { connect } from 'react-redux';
 import { StateType } from '../../redux/reduxStore';
 import {
@@ -11,6 +11,8 @@ import {
    followThunkCreator,
 } from '../../redux/usersReducer';
 import { UsersAPIcomponent } from './UsersAPIcomponent';
+import { compose } from 'redux';
+import { WithAuthRedirect } from '../../HOC/WithAuthRedirect';
 
 const mapStateToProps = (state: StateType) => {
    return {
@@ -46,12 +48,26 @@ const mapStateToProps = (state: StateType) => {
 //    };
 // };
 
-export const UsersContainer = connect(mapStateToProps, {
-   setCurrentPage,
-   setTotalUsersCount,
-   toggleIsFetching,
-   toggleFollowingProgress,
-   getUsersThunkCreator,
-   unfollowThunkCreator,
-   followThunkCreator,
-})(UsersAPIcomponent);
+// export const UsersContainer = connect(mapStateToProps, {
+//    setCurrentPage,
+//    setTotalUsersCount,
+//    toggleIsFetching,
+//    toggleFollowingProgress,
+//    getUsersThunkCreator,
+//    unfollowThunkCreator,
+//    followThunkCreator,
+// })(UsersAPIcomponent);
+
+export const UsersContainer = compose<ComponentType>(
+   WithAuthRedirect,
+
+   connect(mapStateToProps, {
+      setCurrentPage,
+      setTotalUsersCount,
+      toggleIsFetching,
+      toggleFollowingProgress,
+      getUsersThunkCreator,
+      unfollowThunkCreator,
+      followThunkCreator,
+   })
+)(UsersAPIcomponent);
