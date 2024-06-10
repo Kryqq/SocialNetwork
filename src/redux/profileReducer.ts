@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
-import { usersAPI } from '../api/api';
+import { profileAPI, usersAPI } from '../api/api';
 import { ActionType, ProfilePageType } from './store';
 
 export const ADD_POST = 'ADD_POST' as const;
 
 export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW-POST_TEXT' as const;
 export const SET_USER_PROFILE = 'SET_USER_PROFILE' as const;
+export const SET_STATUS = 'SET_STATUS' as const;
 
 type ContactsType = {
    facebook: string;
@@ -65,6 +66,7 @@ const initialState: ProfilePageType = {
    ],
    newPostText: '',
    profile: null,
+   status: '',
 };
 
 export const profileReducer = (state = initialState, action: ActionType) => {
@@ -88,6 +90,8 @@ export const profileReducer = (state = initialState, action: ActionType) => {
          return { ...state, newPostText: action.newText };
       case SET_USER_PROFILE:
          return { ...state, profile: action.profile };
+      case SET_STATUS:
+         return { ...state, status: action.status };
 
       default:
          return state;
@@ -107,10 +111,17 @@ export interface ISET_USER_PROFILE {
    type: typeof SET_USER_PROFILE;
    profile: ProfileType;
 }
+export interface ISET_STATUS {
+   type: typeof SET_STATUS;
+   status: string;
+}
 
 export type addPostActionCreatorType = () => IADD_POST;
 export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
 export type setUserProfileActionCreatorType = (profile: ProfileType) => ISET_USER_PROFILE;
+export type setStatusActionCreatorType = (status: string) => ISET_STATUS;
+
+export const setStatus: setStatusActionCreatorType = (status: string) => ({ type: SET_STATUS, status });
 
 export const addPost: addPostActionCreatorType = () => ({ type: ADD_POST });
 
@@ -127,6 +138,14 @@ export const setUserProfileThunkCreator = (userId: string) => {
    return (dispatch: Dispatch) => {
       usersAPI.setUserProfile(userId).then((response) => {
          dispatch(setUserProfile(response));
+      });
+   };
+};
+
+export const setStatusThunkCreator = (userId: string) => {
+   return (dispatch: Dispatch) => {
+      profileAPI.getStatus(userId).then((response) => {
+         dispatch(setStatus(response.data));
       });
    };
 };
