@@ -9,6 +9,7 @@ import { ComponentType } from 'react';
 
 const mapStateToProps = (state: StateType) => ({
    profile: state.profilePage.profile,
+   status: state.profilePage.status,
 });
 
 export const ProfileContainer = compose<ComponentType>(
