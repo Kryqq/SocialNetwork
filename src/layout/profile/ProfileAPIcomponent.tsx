@@ -18,6 +18,7 @@ export class ProfileApiComponent extends React.Component<ProfilePropsType & Rout
       }
 
       this.props.setUserProfileThunkCreator(userId);
+	 this.props.getUserStatus(userId)
    }
    render() {
       return <Profile {...this.props} />;
