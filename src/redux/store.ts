@@ -24,7 +24,8 @@ export type ActionType =
    | ISET_IS_FETCHING
    | ISET_USER_PROFILE
    | ISET_USER_DATA
-   | ITOGGLE_FOLLOWING_PROGRESS;
+   | ITOGGLE_FOLLOWING_PROGRESS
+   | SET_STATUS;
 
 export type PostsDataType = {
    id: number;
@@ -37,6 +38,7 @@ export type ProfilePageType = {
    postsData: PostsDataType[];
    newPostText: string;
    profile: null | ProfileType;
+   status: string;
 };
 
 export type DialogsDataType = {
