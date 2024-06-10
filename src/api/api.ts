@@ -17,7 +17,8 @@ export const usersAPI = {
          .then((response) => response.data);
    },
    setUserProfile(userId: string) {
-      return instance.get(`profile/${userId}`).then((response) => response.data);
+      console.warn('need to refactor');
+      return profileAPI.getProfile(userId);
    },
    unfollowUser(id: number) {
       return instance.delete(`follow/${id}`).then((response) => response.data);
@@ -28,5 +29,23 @@ export const usersAPI = {
    },
    setUserAuthData() {
       return instance.get(`auth/me`).then((response) => response.data);
+   },
+};
+
+export const authAPI = {
+   setUserAuthData() {
+      return instance.get(`auth/me`).then((response) => response.data);
+   },
+};
+
+export const profileAPI = {
+   getProfile(userId: string) {
+      return instance.get(`profile/${userId}`).then((response) => response.data);
+   },
+   getStatus(userId: string) {
+      return instance.get(`profile/status/${userId}`);
+   },
+   updateStatus(status: string) {
+      return instance.put(`profile/status`, { status });
    },
 };
