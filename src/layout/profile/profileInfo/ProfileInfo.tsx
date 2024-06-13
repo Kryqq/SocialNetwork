@@ -7,13 +7,16 @@ import { Profile } from '../Profile';
 import { ProfileStatus } from './ProfileStatus';
 
 type ProfileInfoType = {
+   updateStatusThunkCreator: (status: string) => void;
    profile: ProfileType | null;
+   status: string;
 };
 
 const ProfileInfo = (props: ProfileInfoType) => {
    if (!props.profile) {
       return <Preloader />;
    }
+
 
    return (
       <div>
@@ -25,7 +28,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
             ></img> */}
          </div>
          <div className={styles.profileInfo}>
-            <ProfileStatus status="Hello!!!" />
+            <ProfileStatus status={props.status} updateStatusThunkCreator={props.updateStatusThunkCreator} />
             <img
                className={styles.profileAvatar}
                alt="avatar"
