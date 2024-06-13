@@ -6,13 +6,17 @@ import { ProfileType } from '../../redux/profileReducer';
 
 type ProfilePropsType = {
    setUserProfileThunkCreator: (userId: string) => void;
+   updateStatus: (status: string) => void;
    profile: ProfileType | null;
+   status: string;
 };
 
 export const Profile = (props: ProfilePropsType) => {
+   console.log(props);
+
    return (
       <div className={styles.profile}>
-         <ProfileInfo profile={props.profile} />
+         <ProfileInfo profile={props.profile} status={props.status} updateStatusThunkCreator={props.updateStatus} />
          <PostsContainer />
       </div>
    );
