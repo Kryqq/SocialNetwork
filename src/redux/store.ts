@@ -1,6 +1,6 @@
 import { ISET_USER_DATA } from './authReducer';
 import { ISEND_PRIVATE_MESSAGE, IUPDATE_NEW_MESSAGE_TEXT } from './dialogsReducer';
-import { IADD_POST, IUPDATE_NEW_POST_TEXT, ISET_USER_PROFILE, ProfileType } from './profileReducer';
+import { IADD_POST, IUPDATE_NEW_POST_TEXT, ISET_USER_PROFILE, ProfileType, ISET_STATUS, IUPDATE_STATUS } from './profileReducer';
 import {
    IFOLLOW_USER,
    ISET_CURRENT_PAGE,
@@ -25,7 +25,8 @@ export type ActionType =
    | ISET_USER_PROFILE
    | ISET_USER_DATA
    | ITOGGLE_FOLLOWING_PROGRESS
-   | SET_STATUS;
+   | ISET_STATUS
+   | IUPDATE_STATUS;
 
 export type PostsDataType = {
    id: number;
