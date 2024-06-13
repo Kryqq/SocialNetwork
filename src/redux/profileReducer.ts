@@ -3,10 +3,10 @@ import { profileAPI, usersAPI } from '../api/api';
 import { ActionType, ProfilePageType } from './store';
 
 export const ADD_POST = 'ADD_POST' as const;
-
 export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW-POST_TEXT' as const;
 export const SET_USER_PROFILE = 'SET_USER_PROFILE' as const;
 export const SET_STATUS = 'SET_STATUS' as const;
+export const UPDATE_STATUS = 'UPDATE_STATUS' as const;
 
 type ContactsType = {
    facebook: string;
@@ -92,6 +92,8 @@ export const profileReducer = (state = initialState, action: ActionType) => {
          return { ...state, profile: action.profile };
       case SET_STATUS:
          return { ...state, status: action.status };
+      case UPDATE_STATUS:
+         return { ...state, status: action.status };
 
       default:
          return state;
@@ -116,15 +118,20 @@ export interface ISET_STATUS {
    status: string;
 }
 
+export interface IUPDATE_STATUS {
+   type: typeof UPDATE_STATUS;
+   status: string;
+}
+
+export type updateStatustActionCreatorType = (status: string) => IUPDATE_STATUS;
 export type addPostActionCreatorType = () => IADD_POST;
 export type UpdateNewPostTextActionCreatorType = (text: string) => IUPDATE_NEW_POST_TEXT;
 export type setUserProfileActionCreatorType = (profile: ProfileType) => ISET_USER_PROFILE;
 export type setStatusActionCreatorType = (status: string) => ISET_STATUS;
 
 export const setStatus: setStatusActionCreatorType = (status: string) => ({ type: SET_STATUS, status });
-
 export const addPost: addPostActionCreatorType = () => ({ type: ADD_POST });
-
+export const updateStatus: updateStatustActionCreatorType = (status: string) => ({ type: UPDATE_STATUS, status });
 export const updateNewPostText: UpdateNewPostTextActionCreatorType = (text: string) => ({
    type: UPDATE_NEW_POST_TEXT,
    newText: text,
@@ -142,10 +149,20 @@ export const setUserProfileThunkCreator = (userId: string) => {
    };
 };
 
-export const setStatusThunkCreator = (userId: string) => {
+export const getStatusThunkCreator = (userId: string) => {
    return (dispatch: Dispatch) => {
       profileAPI.getStatus(userId).then((response) => {
          dispatch(setStatus(response.data));
+      });
+   };
+};
+export const updateStatusThunkCreator = (status: string) => {
+   return (dispatch: Dispatch) => {
+      profileAPI.updateStatus(status).then((response) => {
+         if (response.data.resultCode === 0) {
+            console.log(response.data);
+            dispatch(setStatus(status));
+         }
       });
    };
 };
